@@ -1,0 +1,281 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3228345015A53ADB00E3C085 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3228344F15A53ADB00E3C085 /* UIKit.framework */; };
+		3228345215A53ADB00E3C085 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3228345115A53ADB00E3C085 /* Foundation.framework */; };
+		3228345415A53ADB00E3C085 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3228345315A53ADB00E3C085 /* CoreGraphics.framework */; };
+		3228345A15A53ADB00E3C085 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3228345815A53ADB00E3C085 /* InfoPlist.strings */; };
+		3228345C15A53ADB00E3C085 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228345B15A53ADB00E3C085 /* main.m */; };
+		3228346015A53ADB00E3C085 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228345F15A53ADB00E3C085 /* AppDelegate.m */; };
+		3228346315A53ADB00E3C085 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3228346115A53ADB00E3C085 /* MainStoryboard.storyboard */; };
+		3228346615A53ADB00E3C085 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228346515A53ADB00E3C085 /* ViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3228344B15A53ADB00E3C085 /* PolylineDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolylineDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3228344F15A53ADB00E3C085 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3228345115A53ADB00E3C085 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3228345315A53ADB00E3C085 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3228345715A53ADB00E3C085 /* PolylineDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PolylineDemo-Info.plist"; sourceTree = "<group>"; };
+		3228345915A53ADB00E3C085 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3228345B15A53ADB00E3C085 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3228345D15A53ADB00E3C085 /* PolylineDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PolylineDemo-Prefix.pch"; sourceTree = "<group>"; };
+		3228345E15A53ADB00E3C085 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3228345F15A53ADB00E3C085 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3228346215A53ADB00E3C085 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3228346415A53ADB00E3C085 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3228346515A53ADB00E3C085 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3228344815A53ADB00E3C085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3228345015A53ADB00E3C085 /* UIKit.framework in Frameworks */,
+				3228345215A53ADB00E3C085 /* Foundation.framework in Frameworks */,
+				3228345415A53ADB00E3C085 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3228344015A53ADB00E3C085 = {
+			isa = PBXGroup;
+			children = (
+				3228345515A53ADB00E3C085 /* PolylineDemo */,
+				3228344E15A53ADB00E3C085 /* Frameworks */,
+				3228344C15A53ADB00E3C085 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3228344C15A53ADB00E3C085 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3228344B15A53ADB00E3C085 /* PolylineDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3228344E15A53ADB00E3C085 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3228344F15A53ADB00E3C085 /* UIKit.framework */,
+				3228345115A53ADB00E3C085 /* Foundation.framework */,
+				3228345315A53ADB00E3C085 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3228345515A53ADB00E3C085 /* PolylineDemo */ = {
+			isa = PBXGroup;
+			children = (
+				3228345E15A53ADB00E3C085 /* AppDelegate.h */,
+				3228345F15A53ADB00E3C085 /* AppDelegate.m */,
+				3228346115A53ADB00E3C085 /* MainStoryboard.storyboard */,
+				3228346415A53ADB00E3C085 /* ViewController.h */,
+				3228346515A53ADB00E3C085 /* ViewController.m */,
+				3228345615A53ADB00E3C085 /* Supporting Files */,
+			);
+			path = PolylineDemo;
+			sourceTree = "<group>";
+		};
+		3228345615A53ADB00E3C085 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3228345715A53ADB00E3C085 /* PolylineDemo-Info.plist */,
+				3228345815A53ADB00E3C085 /* InfoPlist.strings */,
+				3228345B15A53ADB00E3C085 /* main.m */,
+				3228345D15A53ADB00E3C085 /* PolylineDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3228344A15A53ADB00E3C085 /* PolylineDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3228346915A53ADB00E3C085 /* Build configuration list for PBXNativeTarget "PolylineDemo" */;
+			buildPhases = (
+				3228344715A53ADB00E3C085 /* Sources */,
+				3228344815A53ADB00E3C085 /* Frameworks */,
+				3228344915A53ADB00E3C085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PolylineDemo;
+			productName = PolylineDemo;
+			productReference = 3228344B15A53ADB00E3C085 /* PolylineDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3228344215A53ADB00E3C085 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 3228344515A53ADB00E3C085 /* Build configuration list for PBXProject "PolylineDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3228344015A53ADB00E3C085;
+			productRefGroup = 3228344C15A53ADB00E3C085 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3228344A15A53ADB00E3C085 /* PolylineDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3228344915A53ADB00E3C085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3228345A15A53ADB00E3C085 /* InfoPlist.strings in Resources */,
+				3228346315A53ADB00E3C085 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3228344715A53ADB00E3C085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3228345C15A53ADB00E3C085 /* main.m in Sources */,
+				3228346015A53ADB00E3C085 /* AppDelegate.m in Sources */,
+				3228346615A53ADB00E3C085 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3228345815A53ADB00E3C085 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3228345915A53ADB00E3C085 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3228346115A53ADB00E3C085 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3228346215A53ADB00E3C085 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3228346715A53ADB00E3C085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3228346815A53ADB00E3C085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3228346A15A53ADB00E3C085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PolylineDemo/PolylineDemo-Prefix.pch";
+				INFOPLIST_FILE = "PolylineDemo/PolylineDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3228346B15A53ADB00E3C085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PolylineDemo/PolylineDemo-Prefix.pch";
+				INFOPLIST_FILE = "PolylineDemo/PolylineDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3228344515A53ADB00E3C085 /* Build configuration list for PBXProject "PolylineDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3228346715A53ADB00E3C085 /* Debug */,
+				3228346815A53ADB00E3C085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3228346915A53ADB00E3C085 /* Build configuration list for PBXNativeTarget "PolylineDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3228346A15A53ADB00E3C085 /* Debug */,
+				3228346B15A53ADB00E3C085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3228344215A53ADB00E3C085 /* Project object */;
+}
