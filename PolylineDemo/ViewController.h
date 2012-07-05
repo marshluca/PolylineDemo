@@ -37,8 +37,7 @@
 @property (nonatomic, retain) MKPolylineView* routeLineView;
 @property (nonatomic, retain) CLLocationManager* locationManager;
 
-// load the points of the route from the data source, in this case
-// a CSV file. 
+// load the points of the route from the data source
 -(void) loadRoute;
 
 // use the computed _routeRect to zoom in on the route. 
