@@ -27,6 +27,10 @@
     
     // setup map view
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];    
+    self.mapView.delegate = self;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.userInteractionEnabled = YES;    
+    self.mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;        
     [self.view addSubview:self.mapView];
     
     // configure location manager
@@ -66,13 +70,8 @@
 #pragma mark
 #pragma mark Map View
 
-- (void)configureMapView
+- (void)configureRoutes
 {
-    self.mapView.delegate = self;
-    self.mapView.showsUserLocation = YES;
-    self.mapView.userInteractionEnabled = YES;    
-    self.mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;    
-    
 	// create the overlay
 	[self loadRoute];
 	
@@ -158,7 +157,7 @@
         NSLog(@"%g", abs(howRecent));        
         NSLog(@"latitude %+.6f, longitude %+.6f\n", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
         
-        [self configureMapView];
+        [self configureRoutes];
     }
     
     // else skip the event and process the next one
