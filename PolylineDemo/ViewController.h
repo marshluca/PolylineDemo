@@ -28,7 +28,10 @@
 	MKMapRect _routeRect;
     
     // location manager
-    CLLocationManager *_locationManager;    
+    CLLocationManager* _locationManager;    
+    
+    // current location
+    CLLocation* _currentLocation;
 }
 
 @property (nonatomic, retain) MKMapView* mapView;
@@ -37,10 +40,6 @@
 @property (nonatomic, retain) MKPolylineView* routeLineView;
 @property (nonatomic, retain) CLLocationManager* locationManager;
 
-// load the points of the route from the data source
--(void) loadRoute;
-
-// use the computed _routeRect to zoom in on the route. 
--(void) zoomInOnRoute;
+-(void) configureRoutes;
 
 @end

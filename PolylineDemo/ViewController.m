@@ -34,7 +34,9 @@
     [self.view addSubview:self.mapView];
     
     // configure location manager
-    [self configureLocationManager];
+    // [self configureLocationManager];
+    
+    [self configureRoutes];
 }
 
 - (void)viewDidUnload
@@ -53,41 +55,9 @@
 }
 
 #pragma mark
-#pragma mark Location Manager
-
-- (void)configureLocationManager
-{
-    // Create the location manager if this object does not already have one.
-    if (nil == _locationManager)
-        _locationManager = [[CLLocationManager alloc] init];
-    
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    _locationManager.distanceFilter = 50;
-    //[_locationManager startUpdatingLocation];
-    [_locationManager startMonitoringSignificantLocationChanges];
-}
-
-#pragma mark
 #pragma mark Map View
 
 - (void)configureRoutes
-{
-	// create the overlay
-	[self loadRoute];
-	
-	// add the overlay to the map
-	if (nil != self.routeLine) {
-		[self.mapView addOverlay:self.routeLine];
-	}
-	
-	// zoom in on the route. 
-	[self zoomInOnRoute];   
-}
-
-
-// creates the route (MKPolyline) overlay
--(void) loadRoute
 {
     // define minimum, maximum points
 	MKMapPoint northEastPoint = MKMapPointMake(0.f, 0.f); 
@@ -99,9 +69,9 @@
 	// for(int idx = 0; idx < pointStrings.count; idx++)
     for(int idx = 0; idx < _points.count; idx++)
 	{        
-        MKUserLocation *userLocation = [_points objectAtIndex:idx];  
-        CLLocationDegrees latitude  = userLocation.coordinate.latitude;
-		CLLocationDegrees longitude = userLocation.coordinate.longitude;		 
+        CLLocation *location = [_points objectAtIndex:idx];  
+        CLLocationDegrees latitude  = location.coordinate.latitude;
+		CLLocationDegrees longitude = location.coordinate.longitude;		 
         
 		// create our coordinate and add it to the correct spot in the array 
 		CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
@@ -125,47 +95,73 @@
 		pointArray[idx] = point;        
 	}
 	
-	// create the polyline based on the array of points. 
-    self.routeLine = [MKPolyline polylineWithPoints:pointArray count:_points.count];
-    
-    double width = northEastPoint.x - southWestPoint.x;
-    double height = northEastPoint.y - southWestPoint.y;
-    
-	_routeRect = MKMapRectMake(southWestPoint.x, southWestPoint.y, width, height);
-    
-	// clear the memory allocated earlier for the points
-	free(pointArray);	
-}
-
--(void) zoomInOnRoute
-{
-	[self.mapView setVisibleMapRect:_routeRect];
-}
-
-#pragma mark
-#pragma mark CLLocationManager delegate methods
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
-    
-    // If it's a relatively recent event, turn off updates to save power
-    NSDate* eventDate = newLocation.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];    
-    
-    if (abs(howRecent) < 2.0)
-    {
-        NSLog(@"recent: %g", abs(howRecent));        
-        NSLog(@"latitude %+.6f, longitude %+.6f\n", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    if (self.routeLine) {
+        [self.mapView removeOverlay:self.routeLine];
     }
     
-    // else skip the event and process the next one
+    self.routeLine = [MKPolyline polylineWithPoints:pointArray count:_points.count];
+    
+    // add the overlay to the map
+	if (nil != self.routeLine) {
+		[self.mapView addOverlay:self.routeLine];
+	}
+    
+    // clear the memory allocated earlier for the points
+	free(pointArray);	
+    
+    /*
+     double width = northEastPoint.x - southWestPoint.x;
+     double height = northEastPoint.y - southWestPoint.y;
+     
+     _routeRect = MKMapRectMake(southWestPoint.x, southWestPoint.y, width, height);    	
+     
+     // zoom in on the route. 
+     [self.mapView setVisibleMapRect:_routeRect];
+     */
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
-    NSLog(@"error: %@",error);
-}
+/*
+ #pragma mark
+ #pragma mark Location Manager
+ 
+ - (void)configureLocationManager
+ {
+ // Create the location manager if this object does not already have one.
+ if (nil == _locationManager)
+ _locationManager = [[CLLocationManager alloc] init];
+ 
+ _locationManager.delegate = self;
+ _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+ _locationManager.distanceFilter = 50;
+ [_locationManager startUpdatingLocation];    
+ // [_locationManager startMonitoringSignificantLocationChanges];
+ }
+ 
+ #pragma mark
+ #pragma mark CLLocationManager delegate methods
+ - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+ {
+ NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
+ 
+ // If it's a relatively recent event, turn off updates to save power
+ NSDate* eventDate = newLocation.timestamp;
+ NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];    
+ 
+ if (abs(howRecent) < 2.0)
+ {
+ NSLog(@"recent: %g", abs(howRecent));        
+ NSLog(@"latitude %+.6f, longitude %+.6f\n", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+ }
+ 
+ // else skip the event and process the next one
+ }
+ 
+ - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+ {
+ NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
+ NSLog(@"error: %@",error);
+ }
+ */
 
 #pragma mark
 #pragma mark MKMapViewDelegate
@@ -178,19 +174,21 @@
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
     NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
+
 	MKOverlayView* overlayView = nil;
 	
 	if(overlay == self.routeLine)
 	{
 		//if we have not yet created an overlay view for this overlay, create it now. 
-		if(nil == self.routeLineView)
-		{
-			self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
-			self.routeLineView.fillColor = [UIColor redColor];
-			self.routeLineView.strokeColor = [UIColor redColor];
-			self.routeLineView.lineWidth = 6;
-		}
-		
+        if (self.routeLineView) {
+            [self.routeLineView removeFromSuperview];
+        }
+        
+        self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
+        self.routeLineView.fillColor = [UIColor redColor];
+        self.routeLineView.strokeColor = [UIColor redColor];
+        self.routeLineView.lineWidth = 10;
+        
 		overlayView = self.routeLineView;		
 	}
 	
@@ -218,13 +216,13 @@
  NSLog(@"mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated");
  NSLog(@"%f, %f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude);    
  }
- */
-
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
-{
-    NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
-    NSLog(@"centerCoordinate: %f, %f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude);    
-}
+ 
+ - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+ {
+ NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
+ NSLog(@"centerCoordinate: %f, %f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude);    
+ }
+ */ 
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
@@ -232,12 +230,12 @@
     NSLog(@"annotation views: %@", views);
 }
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
-    NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
-}
-
 /*
+ - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+ {
+ NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
+ }
+ 
  - (void)mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated
  {
  NSLog(@"mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated");
@@ -252,22 +250,39 @@
  {
  NSLog(@"mapViewDidStopLocatingUser:(MKMapView *)mapView");
  }
- */ 
+*/ 
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     NSLog(@"%@ ----- %@", self, NSStringFromSelector(_cmd));
-    NSLog(@"user location: %f, %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+    
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:userLocation.coordinate.latitude 
+                                                      longitude:userLocation.coordinate.longitude];
+    // check the zero point
+    if  (userLocation.coordinate.latitude == 0.0f ||
+         userLocation.coordinate.longitude == 0.0f)
+        return;
+    
+    // check the move distance
+    if (_points.count > 0) {        
+        CLLocationDistance distance = [location distanceFromLocation:_currentLocation];        
+        if (distance < 5) 
+            return;        
+    }        
     
     if (nil == _points) {
         _points = [[NSMutableArray alloc] init];
     }
     
-    [_points addObject:userLocation];	
+    [_points addObject:location];	
+    _currentLocation = location;
     
     NSLog(@"points: %@", _points);
     
     [self configureRoutes];
+    
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+    [self.mapView setCenterCoordinate:coordinate animated:YES];
 }
 
 @end
